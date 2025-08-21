@@ -24,7 +24,7 @@ export default async function Page() {
   return (
     <main className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="bg-blue-600 text-white p-20 text-center">
+      <section className="bg-blue-600 text-white p-20 text-center my-2 rounded">
         <h1 className="text-5xl font-bold mb-4">Welcome to MyShop</h1>
         <p className="text-xl mb-6">
           Find the best products at unbeatable prices.

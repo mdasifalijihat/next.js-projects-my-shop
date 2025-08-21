@@ -1,4 +1,12 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
 
+const nextConfig = {
+  images: {
+    domains: [
+      "www.applegadgetsbd.com",
+      "adminapi.applegadgetsbd.com", 
+       'imgs.search.brave.com', 
+    ],
+  },
+};
 export default nextConfig;

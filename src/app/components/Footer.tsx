@@ -13,18 +13,6 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Quick Links */}
-        <div>
-          <h3 className="text-lg font-semibold text-white mb-3">Quick Links</h3>
-          <ul className="space-y-2">
-            <li>
-              <a href="/products" className="hover:text-blue-600">
-                Products
-              </a>
-            </li>
-          </ul>
-        </div>
-
         {/* Contact Info */}
         <div>
           <h3 className="text-lg font-semibold text-white mb-3">Contact</h3>
@@ -32,7 +20,7 @@ export default function Footer() {
           <p>Phone: +880 1234-567890</p>
           <p>Address: Dhaka, Bangladesh</p>
         </div>
-      </div>
+      </div> 
 
       {/* Bottom bar */}
       <div className="border-t border-gray-700 mt-6 pt-4 text-center text-sm text-gray-500">

@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 export default function ProfilePage() {
   const { data: session } = useSession();
@@ -19,7 +20,7 @@ export default function ProfilePage() {
     <div className="p-8 max-w-md mx-auto bg-white shadow-lg rounded-lg mt-12">
       <div className="flex flex-col items-center">
         {/* Profile Photo */}
-        <img
+        <Image
           src={user?.image || "/default-avatar.png"}
           alt={user?.name || "User"}
           className="w-32 h-32 rounded-full mb-4 object-cover"

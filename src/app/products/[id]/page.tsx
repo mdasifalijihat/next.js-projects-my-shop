@@ -1,4 +1,5 @@
 import { MongoClient, ServerApiVersion, ObjectId } from "mongodb";
+import Image from "next/image";
 import Link from "next/link";
 
 // Server Component, id ধরে fetch করবে
@@ -28,25 +29,36 @@ export default async function ProductDetails({
   const product = await getProduct(params.id);
 
   if (!product) {
-    return <div className="p-6">Product not found</div>;
+    return <div className="p-6 text-center text-red-500 font-bold">Product not found</div>;
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6 flex flex-col md:flex-row gap-6">
-      <img
-        src={product.image}
-        alt={product.name}
-        className="w-full md:w-1/2 h-auto object-cover rounded shadow"
-      />
-      <div className="flex-1 flex flex-col">
-        <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
-        <p className="text-xl font-semibold text-green-600 mb-2">
-          ${product.price}
-        </p>
-        <p className="text-gray-700 mb-6">{product.description}</p>
+    <div className="max-w-5xl mx-auto p-6 flex flex-col md:flex-row gap-8">
+      {/* Image */}
+      <div className="w-full md:w-1/2 h-64 md:h-auto relative rounded-lg overflow-hidden shadow-lg">
+        <Image
+          src={product.image}
+          alt={product.name}
+          fill
+          style={{ objectFit: "cover" }}
+          className="rounded-lg"
+          sizes="(max-width: 768px) 100vw,
+                 (max-width: 1024px) 50vw,
+                 50vw"
+        />
+      </div>
+
+      {/* Product Info */}
+      <div className="flex-1 flex flex-col justify-between">
+        <div>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">{product.name}</h1>
+          <p className="text-xl sm:text-2xl font-semibold text-green-600 mb-4">${product.price}</p>
+          <p className="text-gray-700 text-sm sm:text-base md:text-lg mb-6">{product.description}</p>
+        </div>
+
         <Link
           href="/products"
-          className="self-start bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="self-start bg-blue-600 text-white px-5 py-3 rounded-lg hover:bg-blue-700 transition font-medium"
         >
           Back to Products
         </Link>
