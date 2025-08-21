@@ -16,7 +16,7 @@ export async function GET() {
     console.error("GET /api/products error:", error);
     return NextResponse.json({ error: "Failed to fetch products" }, { status: 500 });
   } finally {
-    await client.close();
+    // await client.close();
   }
 }
 
@@ -49,6 +49,6 @@ export async function POST(request?: Request) {
     console.error("POST /api/products error:", error);
     return NextResponse.json({ error: "Failed to add product" }, { status: 500 });
   } finally {
-    await client.close();
+    // await client.close();
   }
 }
