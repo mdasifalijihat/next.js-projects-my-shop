@@ -9,7 +9,7 @@ export default function RootLayout({ children }) {
       <body>
         <AuthProvider>
           <Navbar />
-          <main className="">{children}</main>
+          <main className=" container mx-auto">{children}</main>
           <Footer />
         </AuthProvider>
       </body>
