@@ -1,38 +1,52 @@
-import { MongoClient, ServerApiVersion } from "mongodb";
 import { NextResponse } from "next/server";
+import { MongoClient, ServerApiVersion } from "mongodb";
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_CLUSTER}/?retryWrites=true&w=majority`;
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
+const client = new MongoClient(process.env.MONGODB_URI!, {
+  serverApi: { version: ServerApiVersion.v1 },
 });
 
-// GET products
 export async function GET() {
   try {
     await client.connect();
     const db = client.db("myshop");
     const products = await db.collection("products").find({}).toArray();
+
     return NextResponse.json(products);
   } catch (error) {
+    console.error(error);
     return NextResponse.json({ error: "Failed to fetch products" }, { status: 500 });
   } finally {
     await client.close();
   }
 }
 
-// POST product
-export async function POST(request: Request) {
+export async function POST(req: Request) {
   try {
-    const body = await request.json();
+    const body = await req.json();
+    const { name, price, description, image } = body;
+
+    if (!name || !price || !image) {
+      return NextResponse.json(
+        { error: "Name, price and image URL are required" },
+        { status: 400 }
+      );
+    }
+
     await client.connect();
     const db = client.db("myshop");
-    await db.collection("products").insertOne(body);
-    return NextResponse.json({ message: "Product added!" }, { status: 201 });
+    const products = db.collection("products");
+
+    await products.insertOne({
+      name,
+      price,
+      description,
+      image, // URL
+      createdAt: new Date(),
+    });
+
+    return NextResponse.json({ message: "Product added successfully!" });
   } catch (error) {
+    console.error(error);
     return NextResponse.json({ error: "Failed to add product" }, { status: 500 });
   } finally {
     await client.close();
