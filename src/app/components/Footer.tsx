@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="py-8 mt-10">
+    <footer className="py-8 mt-10 bg-white shadow-md">
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Brand / Logo */}
         <div>

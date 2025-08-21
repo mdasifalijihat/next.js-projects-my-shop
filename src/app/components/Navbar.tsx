@@ -1,10 +1,14 @@
+
 "use client"
 import Link from "next/link"
+import { useSession, signOut } from "next-auth/react"
 
 export default function Navbar() {
+  const { data: session } = useSession()
+
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           
           {/* Logo */}
@@ -25,15 +29,33 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Right Side: Login Button */}
+          {/* Right Side */}
           <div>
-            <Link 
-              href="/login" 
-              className="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700"
-            >
-              Login
-            </Link>
+            {!session ? (
+              <Link 
+                href="/login" 
+                className="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700"
+              >
+                Login
+              </Link>
+            ) : (
+              <div className="flex items-center space-x-4">
+                <Link 
+                  href="/dashboard/add-product"
+                  className="px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-700"
+                >
+                  Dashboard
+                </Link>
+                <button
+                  onClick={() => signOut({ callbackUrl: "/" })}
+                  className="px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
+
         </div>
       </div>
     </nav>
