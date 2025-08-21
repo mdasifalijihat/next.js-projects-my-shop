@@ -1,7 +1,7 @@
-
-import AuthProvider from "./components/AuthProvider"
-import Navbar from "./components/Navbar"
-import "./globals.css"
+import AuthProvider from "./components/AuthProvider";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import "./globals.css";
 
 export default function RootLayout({ children }) {
   return (
@@ -9,10 +9,10 @@ export default function RootLayout({ children }) {
       <body>
         <AuthProvider>
           <Navbar />
-          <main className="min-h-screen">{children}</main>
-          <footer />
+          <main className="">{children}</main>
+          <Footer />
         </AuthProvider>
       </body>
     </html>
-  )
+  );
 }
