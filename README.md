@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MyShop - E-commerce Web Application
 
-## Getting Started
+**Project Description:**  
+MyShop is a modern e-commerce web application that allows users to browse products, view details, It includes a fully functional admin dashboard, user authentication, and a responsive design for both desktop and mobile devices.
 
-First, run the development server:
+**Live Demo:**  
+[Visit MyShop Live](https://your-live-project-link.com)  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Tech Stack Used:**  
+- Frontend: **Next.js 15**, **Tailwind CSS**
+- Backend: **Next.js API Routes**, **MongoDB Atlas**
+- Authentication: **NextAuth.js** 
+- Notifications: **SweetAlert2**
+- 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## What We Did
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Landing Page & Product Highlights**
+   - Hero section showcasing featured products.
+   - Responsive and animated cards using Tailwind CSS.
 
-## Learn More
+2. **Product Management**
+   - Product listing page with image, name, price, and description.
+   - Product details page for more information.
+   - Admin-only Add Product page with form validation.
 
-To learn more about Next.js, take a look at the following resources:
+3. **User Authentication**
+   - Social login (Google) and email/password credentials. using NextAuth.js.  
+   - Protected routes for dashboard access.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Dashboard**
+   - Admin dashboard to manage products.
+   - Links to Add Product, and Profile.
+   - Logout option with SweetAlert2 confirmation.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. **Profile Page**
+   - Displays user information: name, email, profile photo.
 
-## Deploy on Vercel
+6. **Backend & Database**
+   - MongoDB Atlas for storing users and products.
+   - CRUD operations for products via Next.js API routes.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+7. **Notifications & UX** 
+   - SweetAlert2 alerts for success and error feedback.
+   - Smooth hover animations and transitions.
+   - Fully responsive layout for all devices.
