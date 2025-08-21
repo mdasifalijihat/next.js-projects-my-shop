@@ -10,36 +10,30 @@ export async function GET() {
     await client.connect();
     const db = client.db("myshop");
     const products = db.collection("products");
-
     const allProducts = await products.find({}).toArray();
-
     return NextResponse.json(allProducts);
   } catch (error) {
     console.error("GET /api/products error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch products" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to fetch products" }, { status: 500 });
   } finally {
     await client.close();
   }
 }
 
-export async function POST(req: Request) {
+export async function POST(request: Request) {
   try {
-    const body = await req.json();
+    // Safety check
+    if (!request) return NextResponse.json({ error: "No request found" }, { status: 400 });
+
+    const body = await request.json();
     const { name, price, description, image } = body;
 
     if (!name || !price || !image) {
-      return NextResponse.json(
-        { error: "Name, price and image URL are required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Name, price and image URL are required" }, { status: 400 });
     }
 
     await client.connect();
     const db = client.db("myshop");
-    console.log("MongoDB connected!");
     const products = db.collection("products");
 
     const result = await products.insertOne({
@@ -50,16 +44,10 @@ export async function POST(req: Request) {
       createdAt: new Date(),
     });
 
-    return NextResponse.json({
-      message: "Product added successfully!",
-      id: result.insertedId,
-    });
+    return NextResponse.json({ message: "Product added successfully!", id: result.insertedId });
   } catch (error) {
     console.error("POST /api/products error:", error);
-    return NextResponse.json(
-      { error: "Failed to add product" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to add product" }, { status: 500 });
   } finally {
     await client.close();
   }
