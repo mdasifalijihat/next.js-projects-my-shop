@@ -4,7 +4,7 @@
 MyShop is a modern e-commerce web application that allows users to browse products, view details, It includes a fully functional admin dashboard, user authentication, and a responsive design for both desktop and mobile devices.
 
 **Live Demo:**  
-[Visit MyShop Live](https://your-live-project-link.com)  
+[Visit MyShop Live](https://next-js-projects-my-shop.vercel.app/)  
 
 **Tech Stack Used:**  
 - Frontend: **Next.js 15**, **Tailwind CSS**
