@@ -20,11 +20,15 @@ export default function ProfilePage() {
     <div className="p-8 max-w-md mx-auto bg-white shadow-lg rounded-lg mt-12">
       <div className="flex flex-col items-center">
         {/* Profile Photo */}
-        <Image
-          src={user?.image || "/default-avatar.png"}
-          alt={user?.name || "User"}
-          className="w-32 h-32 rounded-full mb-4 object-cover"
-        />
+        <div className="w-32 h-32 relative mb-4">
+          <Image
+            src={user?.image || "/default-avatar.png"}
+            alt={user?.name || "User"}
+            fill
+            className="rounded-full object-cover"
+            sizes="128px"
+          />
+        </div>
 
         {/* Name */}
         <h1 className="text-2xl font-bold mb-2">{user?.name}</h1>
@@ -35,7 +39,7 @@ export default function ProfilePage() {
         {/* Extra Info */}
         <div className="w-full mt-4">
           <h2 className="font-semibold mb-2">Account Info</h2>
-          <ul className="text-gray-700">
+          <ul className="text-gray-700 space-y-1">
             <li>
               <strong>Name:</strong> {user?.name}
             </li>

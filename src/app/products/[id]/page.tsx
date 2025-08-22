@@ -24,12 +24,17 @@ async function getProduct(id: string) {
 export default async function ProductDetails({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;   // <-- params এখন Promise টাইপ
 }) {
-  const product = await getProduct(params.id);
+  const { id } = await params;       // <-- আগে await করে destructure করো
+  const product = await getProduct(id);
 
   if (!product) {
-    return <div className="p-6 text-center text-red-500 font-bold">Product not found</div>;
+    return (
+      <div className="p-6 text-center text-red-500 font-bold">
+        Product not found
+      </div>
+    );
   }
 
   return (
@@ -40,6 +45,7 @@ export default async function ProductDetails({
           src={product.image}
           alt={product.name}
           fill
+          priority
           style={{ objectFit: "cover" }}
           className="rounded-lg"
           sizes="(max-width: 768px) 100vw,
@@ -51,9 +57,15 @@ export default async function ProductDetails({
       {/* Product Info */}
       <div className="flex-1 flex flex-col justify-between">
         <div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">{product.name}</h1>
-          <p className="text-xl sm:text-2xl font-semibold text-green-600 mb-4">${product.price}</p>
-          <p className="text-gray-700 text-sm sm:text-base md:text-lg mb-6">{product.description}</p>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+            {product.name}
+          </h1>
+          <p className="text-xl sm:text-2xl font-semibold text-green-600 mb-4">
+            ${product.price}
+          </p>
+          <p className="text-gray-700 text-sm sm:text-base md:text-lg mb-6">
+            {product.description}
+          </p>
         </div>
 
         <Link

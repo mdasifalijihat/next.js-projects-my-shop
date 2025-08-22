@@ -4,8 +4,9 @@ const nextConfig = {
   images: {
     domains: [
       "www.applegadgetsbd.com",
-      "adminapi.applegadgetsbd.com", 
-       'imgs.search.brave.com', 
+      "adminapi.applegadgetsbd.com",
+      "imgs.search.brave.com",
+      "lh3.googleusercontent.com",
     ],
   },
 };
